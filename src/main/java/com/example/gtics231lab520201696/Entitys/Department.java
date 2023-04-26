@@ -20,7 +20,7 @@ public class Department {
     @JoinColumn(name = "manager_id")
     private Employee manager;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "location_id")
     private Location location;
 

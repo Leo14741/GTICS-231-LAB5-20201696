@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <title>Empleados Totales</title>
     <button type="button" class="btn btn-primary">Nuevo Empleado</button>
 </head>
 <body>
-<div class="card mb-3">
-    <div class="card-body border-top">
+<main>
+    <div class="container px-4 py-5">
         <table class="table table-striped" id="userList">
             <thead class="bg-200">
             <tr>
@@ -50,7 +52,8 @@
             </tbody>
         </table>
     </div>
-</div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script th:src="@{/lib/datatables/js/jquery.dataTables.min.js}"></script>
 <script th:src="@{/lib/datatables-bs4/dataTables.bootstrap4.min.js}"></script>
 <script th:src="@{/lib/datatables.net-responsive/dataTables.responsive.js}"></script>

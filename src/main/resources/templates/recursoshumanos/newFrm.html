@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+  <title>Nuevo Producto</title>
+</head>
+<body>
+<main>
+  <div class="container px-4 py-5">
+    <h1 class="pb-2 mb-3 border-bottom">Nuevo Producto</h1>
+    <form method="post" th:action="@{'/recursoshumanos/save'}" class="mt-2">
+      <div class="mb-3">
+        <label for="firstName" class="form-label">Nombre del Producto</label>
+        <input type="text" class="form-control" name="firstName" id="firstName">
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Nombre del Producto</label>
+        <input type="text" class="form-control" name="lastName" id="lastName">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Nombre del Producto</label>
+        <input type="email" class="form-control" name="email" id="email">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Nombre del Producto</label>
+        <input type="text" class="form-control" name="password" id="password">
+      </div>
+      <div class="mb-3">
+        <label for="jobTitle" class="form-label">Categoría</label>
+        <select name="jobTitle" class="form-select" id="jobTitle">
+          <option th:each="puesto : ${listaPuestos}" th:text="${puesto.jobTitle}"
+                  th:value="${puesto.getId()}"></option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="salary" class="form-label">Nombre del Producto</label>
+        <input type="text" class="form-control" name="salary" id="salary">
+      </div>
+      <div class="mb-3">
+        <label for="supplier" class="form-label">Proveedor</label>
+        <select name="supplier" class="form-select" id="supplier">
+          <option th:each="employee : ${listaEmployees}" th:text="${employee.getManager()}"
+                  th:value="${employee.getId()}"></option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="quantityperunit" class="form-label">Cantidad por unidad</label>
+        <input type="text" class="form-control" name="quantityperunit" id="quantityperunit">
+      </div>
+      <div class="mb-3">
+        <label for="unitprice" class="form-label">Precio unitario</label>
+        <input type="text" class="form-control" name="unitprice" id="unitprice">
+      </div>
+
+      <a th:href="@{'/product'}" class="btn btn-danger">Cancelar</a>
+      <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+  </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

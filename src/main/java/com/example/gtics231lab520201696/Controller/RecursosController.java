@@ -2,6 +2,7 @@ package com.example.gtics231lab520201696.Controller;
 
 import com.example.gtics231lab520201696.Entitys.Employee;
 import com.example.gtics231lab520201696.Repository.EmployeeRepository;
+import com.example.gtics231lab520201696.Repository.JobRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,11 @@ import java.util.Optional;
 @RequestMapping("/recursoshumanos")
 public class RecursosController {
     final EmployeeRepository employeeRepository;
+    final JobRepository jobRepository;
 
-    public RecursosController(EmployeeRepository employeeRepository) {
+    public RecursosController(EmployeeRepository employeeRepository, JobRepository jobRepository) {
         this.employeeRepository = employeeRepository;
+        this.jobRepository = jobRepository;
     }
 
     @RequestMapping(value = {"/empleados"},method = RequestMethod.GET)
@@ -40,5 +43,25 @@ public class RecursosController {
         }
         attr.addFlashAttribute("msg","Empleado borrado exitosamente");
         return "redirect:/recursoshumanos/empleados";
+    }
+    @GetMapping("/edit")
+    public String editarEmpleado(Model model,
+                                      @RequestParam("id") int id) {
+
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+
+        if (optionalEmployee.isPresent()) {
+            Employee employee = optionalEmployee.get();
+            model.addAttribute("employee", employee);
+            return "recursoshumanos/editFrm";
+        } else {
+            return "redirect:/recursoshumanos/empleados";
+        }
+    }
+    @GetMapping("/new")
+    public String nuevoEmployee(Model model) {
+        model.addAttribute("listaPuestos", jobRepository.findAll());
+        model.addAttribute("listaEmployees", employeeRepository.findAll());
+        return "recursoshumanos/newFrm";
     }
 }
